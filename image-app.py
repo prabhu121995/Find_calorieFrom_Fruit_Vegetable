@@ -4,6 +4,7 @@ from PIL import Image
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
+import uvicorn
 
 app = FastAPI()
 
@@ -127,6 +128,5 @@ async def count_fruits(file: UploadFile = File(...)):
 
 #port = int(os.getenv("PORT", 8000))  # Default to 8000 if not set
 
-#if __name__ == "__main__":
-#    import uvicorn
-#    uvicorn.run(app, host="0.0.0.0", port=port)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
