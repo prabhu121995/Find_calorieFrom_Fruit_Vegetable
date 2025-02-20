@@ -1,3 +1,3 @@
 @echo off
-powershell -WindowStyle Hidden -Command "Start-Process 'C:\Program Files\Python311\python.exe' -ArgumentList 'D:\Project\2025-01-28\Find_calorieFrom_Fruit_Vegetable\image-app.py' -NoNewWindow"
+powershell -WindowStyle Hidden -Command "Start-Process 'C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\python.exe' -ArgumentList 'C:\Prabhu\Project\Live\PythonI2T\image-app.py' -NoNewWindow"
 exit

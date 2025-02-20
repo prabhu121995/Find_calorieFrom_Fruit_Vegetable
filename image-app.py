@@ -4,7 +4,6 @@ from PIL import Image
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-import uvicorn
 
 app = FastAPI()
 
@@ -24,30 +23,24 @@ Respond with a JSON-like database format that includes the following fields:
 
 Example response format:
 {
-    "status": "success",
-    "data": [
-        {
-            "id": 1,
-            "name": "apple",
-            "color": "green",
-            "weight": 150,
-            "delicious": true
-        },
-        {
-            "id": 2,
-            "name": "banana",
-            "color": "yellow",
-            "weight": 116,
-            "delicious": true
-        },
-        {
-            "id": 3,
-            "name": "strawberry",
-            "color": "red",
-            "weight": 12,
-            "delicious": true
-        }
-    ]
+"data":[
+{
+    "id": 1,
+    "item_name": "Banana",
+    "quantity": "5",
+    "calories": "600",
+    "short_description": "Approximately 120 calories per banana (medium size)"
+  },
+  {
+    "id": 2,
+    "item_name": "Green Grapes",
+    "quantity": "1 bunch (approx. 30 grapes)",
+    "calories": "150" ,
+    "short_description": "Approximately 5 calories per grape"
+  }
+],
+  "total_calories": "1600",
+  "disclaimer": "Calorie counts are estimates and can vary based on the specific size and type of fruit. These values represent reasonable approximations for commonly available sizes of these fruits. The image doesn't provide exact weights, so these calculations have a margin of error."
 }
 """
 
@@ -126,7 +119,8 @@ async def count_fruits(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
-#port = int(os.getenv("PORT", 8000))  # Default to 8000 if not set
+port = int(os.getenv("PORT", 8000))  # Default to 8000 if not set
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=port)
